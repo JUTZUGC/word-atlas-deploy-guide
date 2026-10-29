@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "wordatlas-guide": {
+      "command": "node",
+      "args": [
+        "mcp-server.mjs"
+      ]
+    }
+  }
+}

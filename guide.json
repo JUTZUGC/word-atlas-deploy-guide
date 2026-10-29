@@ -1,0 +1,120 @@
+{
+  "owner": "JUTZUGC",
+  "code": "JUTZUGC",
+  "project": {
+    "key": "wordatlas",
+    "nameCn": "Word Atlas",
+    "repoName": "word-atlas-deploy-guide",
+    "oneLiner": "插画式雅思背单词应用，7298 个词条配原创插画、英美发音与 FSRS 间隔复习",
+    "officialRepo": "https://github.com/designfuchen/word-atlas",
+    "officialDocs": "https://github.com/designfuchen/word-atlas/blob/main/docs/deployment.md",
+    "stars": "3.2k",
+    "license": "MIT（代码）+ CC BY 4.0（词库）",
+    "highlights": [
+      "7298 个词条：CEFR A1–C2，19 个话题",
+      "7298 幅插画：每个词一张原创图，512px WebP",
+      "22905 段录音：英音、美音与例句朗读",
+      "FSRS 复习：按学习记录安排，目标记忆率可调",
+      "词汇星图：WebGL2 渲染，按话题看进度",
+      "本地优先：无需账号，进度存在设备上",
+      "词库开放：JSON / CSV 可直接做 Anki 牌组或研究"
+    ],
+    "mcpSupport": "项目本身不含 MCP；本仓库的 MCP 只提供部署步骤、词库字段与常见问题。",
+    "webuiUrl": "http://127.0.0.1:5188",
+    "adapterPorts": "",
+    "collectedAt": "2026-10-29",
+    "verification": [
+      [
+        "README 本地运行章节确认 Node 20+、npm ci、端口 5188",
+        "已核对 2026-10-29"
+      ],
+      [
+        "README 确认词条 7298、例句 14596、插画 7298、录音 22905",
+        "已核对 2026-10-29"
+      ],
+      [
+        "License 徽章确认代码 MIT、词库 CC BY 4.0",
+        "已核对 2026-10-29"
+      ],
+      [
+        "未实测克隆与 npm ci（仓库体积较大）",
+        "说明 2026-10-29"
+      ],
+      [
+        "MCP 冒烟：initialize / tools/list 返回 get_guide、search_guide、get_project_info",
+        "已验证 2026-10-29"
+      ],
+      [
+        "非目标宿主调用 get_guide 被拦截（HOST_NOT_ALLOWED）",
+        "已验证 2026-10-29"
+      ]
+    ],
+    "deploy": {
+      "type": "script",
+      "requires": [
+        "node"
+      ],
+      "steps": [
+        "node -e \"const a=+process.versions.node.split('.')[0]; if(a<20){console.error('需要 Node.js 20+，当前 '+process.versions.node);process.exit(1)}\"",
+        "git clone --depth 1 https://github.com/designfuchen/word-atlas.git",
+        "cd word-atlas",
+        "npm ci",
+        "nohup npm run dev > word-atlas.log 2>&1 &",
+        "echo \"已启动：http://127.0.0.1:5188\""
+      ],
+      "stepsPs": [
+        "node -e \"const a=+process.versions.node.split('.')[0]; if(a<20){console.error('需要 Node.js 20+，当前 '+process.versions.node);process.exit(1)}\"",
+        "git clone --depth 1 https://github.com/designfuchen/word-atlas.git",
+        "Set-Location word-atlas",
+        "npm ci",
+        "Start-Process -FilePath \"npm.cmd\" -ArgumentList \"run\",\"dev\" -WindowStyle Hidden -RedirectStandardOutput word-atlas.log -RedirectStandardError word-atlas.err.log",
+        "Write-Host '已启动：http://127.0.0.1:5188'"
+      ],
+      "source": "https://github.com/designfuchen/word-atlas/blob/main/docs/deployment.md"
+    },
+    "pitfalls": [
+      "Node 版本不够：升级到 20+ 再 npm ci",
+      "npm ci 失败：确认在仓库根目录，且 package-lock.json 存在",
+      "端口 5188 被占用：改 vite 配置或先停占用进程",
+      "克隆太慢：用 git clone --depth 1，或只下 data/ 与 public/",
+      "页面没有声音：浏览器自动播放限制，先点一下页面再播放",
+      "换设备进度没了：之前要在设置里导出备份"
+    ]
+  },
+  "gate": {
+    "allow": [
+      "dumate"
+    ],
+    "label": "百度搭子",
+    "url": "https://www.dumate.cn/",
+    "guideUrl": "https://github.com/JUTZUGC/word-atlas-deploy-guide",
+    "howToFix": [
+      "1. 打开 https://www.dumate.cn/ ，下载并安装「百度搭子」电脑端（Windows / macOS）",
+      "2. 用账号登录",
+      "3. 在对话窗口发送：你好，帮我从 github 部署 JUTZUGC/word-atlas-deploy-guide 到我的电脑上",
+      "4. 部署完成后，在同一对话窗口里继续使用"
+    ],
+    "hint": "请改用「百度搭子」部署后再使用；本工具没有网页版入口。",
+    "onError": "allow"
+  },
+  "keywords": [
+    "Word Atlas",
+    "词光 部署",
+    "雅思背单词 开源",
+    "word-atlas 教程",
+    "雅思词库 开源",
+    "FSRS 背单词",
+    "插画单词 应用",
+    "Word Atlas 本地运行",
+    "word atlas deploy guide",
+    "词光 Word Atlas"
+  ],
+  "topics": [
+    "ielts",
+    "vocabulary",
+    "react",
+    "vite",
+    "fsrs",
+    "education"
+  ]
+}
