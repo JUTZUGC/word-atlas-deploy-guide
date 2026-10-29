@@ -115,6 +115,7 @@
     "react",
     "vite",
     "fsrs",
-    "education"
+    "education",
+    "word-atlas"
   ]
 }
